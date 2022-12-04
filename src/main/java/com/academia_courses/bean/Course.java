@@ -1,6 +1,12 @@
 package com.academia_courses.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
+
 
 @Entity
 @Table(name="course")
@@ -12,7 +18,7 @@ public class Course {
     @Column(name="courseCode",nullable = false, unique = true)
     private String course_code;
 
-    @Column(name="courseName",nullable = false, unique = true)
+    @Column(name="courseName",nullable = false)
     private String course_name;
 
     @Column(name="description")
@@ -27,24 +33,37 @@ public class Course {
     @Column(name="credits",nullable = false)
     private Integer course_credits;
 
+    @Column()
+    private String dummy;
     @Column(name="capacity",nullable = false)
     private Integer course_capacity;
 
-    @Column(name="faculty",nullable = false)
-    private String course_faculty;
+    @ManyToOne
+    @JoinColumn(name = "facultyid",nullable = false)
+    private Employee employee;
+
+
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade={CascadeType.REMOVE})
+    @JoinTable(name="Course_Prerequisite",
+           joinColumns = {@JoinColumn(name="Course_id", referencedColumnName = "id", unique = false)},
+            inverseJoinColumns = {@JoinColumn(name="prerequisite_id", referencedColumnName = "id", unique = false)})
+   // @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Course> Prerequisite;
 
     public Course() {
     }
 
-    public Course(String course_code, String course_name, String course_description, Integer course_year, Integer course_term, Integer course_credits, Integer course_capacity, String course_faculty) {
+    public Course(Integer id, String course_code, String course_name, String course_description, Integer course_year, Integer course_term, Integer course_credits, String dummy, Integer course_capacity) {
+        this.id = id;
         this.course_code = course_code;
         this.course_name = course_name;
         this.course_description = course_description;
         this.course_year = course_year;
         this.course_term = course_term;
         this.course_credits = course_credits;
+        this.dummy = dummy;
         this.course_capacity = course_capacity;
-        this.course_faculty = course_faculty;
     }
 
     public Integer getId() {
@@ -111,13 +130,31 @@ public class Course {
         this.course_capacity = course_capacity;
     }
 
-    public String getCourse_faculty() {
-        return course_faculty;
+    public String getDummy() {
+        return dummy;
     }
 
-    public void setCourse_faculty(String course_faculty) {
-        this.course_faculty = course_faculty;
+    public void setDummy(String dummy) {
+        this.dummy = dummy;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public List<Course> getPrerequisite() {
+        return Prerequisite;
+    }
+
+    public void setPrerequisite(List<Course> prerequisite) {
+        Prerequisite = prerequisite;
+    }
+
+
 }
 
 /* "id": 3,

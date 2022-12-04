@@ -23,7 +23,7 @@ public class LoginController {
         Employee login_admin = loginService.login(admin);
 
         if (login_admin == null)
-            return Response.status(407).build();
+            return Response.status(400).build();
         else
             return Response.ok().entity(login_admin).build();
     }

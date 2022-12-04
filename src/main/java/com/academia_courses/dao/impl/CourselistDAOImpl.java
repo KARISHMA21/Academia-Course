@@ -5,6 +5,7 @@ import com.academia_courses.bean.Employee;
 import com.academia_courses.dao.CourslistDAO;
 import com.academia_courses.util.HibernateSessionUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Internal;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -23,8 +24,26 @@ public class CourselistDAOImpl implements CourslistDAO {
 
             try (Session session = HibernateSessionUtil.getSession()){
                 for (
-                        final Object course: session
-                        .createQuery("FROM Course").list()
+//                        final Object course: session
+//                        .createQuery("FROM Course c JOIN Employee e on c.employee.employeeid = e.employeeid").list()
+                final Object course: session
+                        .createQuery("FROM Course ").list()
+
+               // select * from course c JOIN course_schedule cs on c.course_id=cs.course_id
+/*
+                select concat(fname, ' ', minit, ' ', lname)
+                item.id}</td>
+                                        <td>{item.course_code}</td>
+                                        <td>{item.course_name}</td>
+                                        <td>{item.course_description}</td>
+                                        <td>{item.course_year}</td>
+                                        <td>{item.course_term}</td>
+                                        <td>{item.course_credits}</td>
+                                        <td>{item.course_capacity}</td>
+                                        <td><ul>{item.course_prerequisites.split(',').map((items, i)=>(<li key={i}>{items}</li>))}</ul></td>
+                                        <td>{item.course_faculty}<
+
+ */
 
                 )
                  //   System.out.println(course);
@@ -71,7 +90,8 @@ public class CourselistDAOImpl implements CourslistDAO {
             System.out.println("===============================================================================================");
             List<Object> result = new ArrayList<Object>(
                     session.createQuery(
-                                    "FROM Course WHERE id = :courseid"
+                                //    "FROM Course WHERE id = :courseid"
+                                    "FROM Course c  JOIN Employee e on c.employee.employeeid = e.employeeid WHERE c.id = :courseid"
                             )
                             .setParameter("courseid", courseid)
                             .list()
@@ -106,19 +126,35 @@ public class CourselistDAOImpl implements CourslistDAO {
             Integer year = coursedetails_update.getCourse_year();
             Integer term = coursedetails_update.getCourse_term();
             Integer credits = coursedetails_update.getCourse_credits();
+            String faculty = coursedetails_update.getDummy();
             Integer capacity = coursedetails_update.getCourse_capacity();
-            String faculty = coursedetails_update.getCourse_faculty();
+            System.out.println("================ updated faculty is "+faculty+"=================");
 
+//            List<Integer> result = new ArrayList<>(session.createQuery(
+//                                    "select employeeid FROM Employee where employeename = :updatedname")
+//
+//                            .setParameter("updatedname", faculty).list()
+//            );
+
+            Query query1 = session.createQuery(  "select employeeid FROM Employee where employeename = :updatedname");
+            query1.setParameter("updatedname",faculty);
+            Integer result = (Integer) query1.uniqueResult();
+
+//            Query query=session.createQuery(query_string);
+//            query.setParameter("courseid", courseid);
+//            query.executeUpdate();
+//            transaction.commit();
+
+            System.out.println("============result========="+result+"===========================");
 
             Transaction transaction = session.beginTransaction();
-            String query_string="UPDATE Course set " +
-                    "course_name=course_name," +
-                    " course_description=course_description," +
-                    "course_year=course_year, " +
-                    "course_term = course_term," +
-                    "course_credits = course_credits," +
-                    "course_capacity = course_capacity," +
-                    "course_faculty = course_faculty WHERE id=:courseid";
+            String query_string="UPDATE Course set course_name=:course_name," +
+                    " course_description=:course_description," +
+                    "course_year=:course_year, " +
+                    "course_term =:course_term," +
+                    "course_credits =: course_credits," +
+                    "employee.employeeid =: facultyid,"+
+                    "course_capacity =: course_capacity WHERE id=:courseid";
             Query query=session.createQuery(query_string);
             query.setParameter("course_name", name);
             query.setParameter("course_description", description);
@@ -126,7 +162,7 @@ public class CourselistDAOImpl implements CourslistDAO {
             query.setParameter("course_term",term);
             query.setParameter("course_credits",credits);
             query.setParameter("course_capacity",capacity);
-            query.setParameter("course_faculty",faculty);
+            query.setParameter("facultyid",result);
             query.setParameter("courseid", courseid);
             query.executeUpdate();
             transaction.commit();

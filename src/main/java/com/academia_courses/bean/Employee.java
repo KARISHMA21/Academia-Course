@@ -1,40 +1,47 @@
 package com.academia_courses.bean;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer employeeId;
+    private Integer employeeid;
 
     @Column(nullable = false)
     private String department;
 
-    @Column(nullable = false)
-    private String firstName;
+    @Column(nullable = false, unique = true)
+    private String employeename;
 
-    @Column
-    private String lastName;
 
     @Column(nullable = false, unique = true)
     private String email;
 
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    @JsonIgnore // Doesn't seem to work in this case
+    private List<Course> courselist;
     public Employee() {
     }
 
     public Employee(String department, String firstName, String lastName, String email, String password) {
         this.department = department;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.employeename = employeename;
         this.email = email;
         this.password = password;
     }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public Integer getEmployeeid() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(Integer employeeid) {
+        this.employeeid = employeeid;
     }
 
     public String getDepartment() {
@@ -45,20 +52,12 @@ public class Employee {
         this.department = department;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return employeename;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.employeename = employeename;
     }
 
     public String getEmail() {

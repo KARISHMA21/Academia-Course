@@ -10,28 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83a937b4-a8df-404f-948a-00b14d7618d9" name="Changes" comment="view and delete v1">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/controller/CourselistController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/AdminDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/CourslistDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/impl/AdminDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/impl/CourselistDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/service/CoursesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/service/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/util/CORSFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/util/HibernateSessionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Coursedetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/bean/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/impl/CourselistDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/academia_courses/dao/impl/CourselistDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -216,8 +199,22 @@
       <workItem from="1669742065216" duration="295000" />
       <workItem from="1669743179109" duration="6597000" />
       <workItem from="1669750381603" duration="74000" />
-      <workItem from="1669750868468" duration="1885000" />
+      <workItem from="1669750868468" duration="2422000" />
+      <workItem from="1669789112931" duration="488000" />
+      <workItem from="1669961471730" duration="1889000" />
+      <workItem from="1669965874433" duration="3475000" />
+      <workItem from="1669970120285" duration="7578000" />
+      <workItem from="1669979245545" duration="713000" />
+      <workItem from="1669980397038" duration="417000" />
     </task>
+    <task id="LOCAL-00001" summary="view and delete v1">
+      <created>1669752884819</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669752884820</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

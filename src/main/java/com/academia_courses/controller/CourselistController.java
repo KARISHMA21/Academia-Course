@@ -15,9 +15,8 @@ public class CourselistController {
 
     /*
         Path: GET /api/bill?studentId={studentId}
-        Input: {studentId}
-        Response: 200 Status Code with the Bills of the student (if Authorization added, would need to change this)
-        Description: Return all bills of the Student with id = {studentId}
+        Input: {course id }
+
     */
     @GET
     @Path("list")
@@ -36,7 +35,7 @@ public class CourselistController {
     public Response deletecourse(@PathParam("courseid") Integer courseid) {
         Boolean courseremoved = courseservice.removecourse(courseid);
         if (courseremoved)
-            return Response.status(204).build();
+            return Response.status(200).build();
         else
             return Response.status(400).build();
     }
@@ -58,7 +57,7 @@ public class CourselistController {
     public Response updatecourse(@PathParam("courseid") Integer courseid,Course coursedetails_update) {
         Boolean courseupdated = courseservice.updatecourse(courseid, coursedetails_update);
         if (courseupdated == null)
-            return Response.status(410).build();
+            return Response.status(400).build();
         else
             return Response.ok().entity(courseupdated).build();
     }
